@@ -55,17 +55,17 @@ MHD_run_from_select (struct MHD_Daemon *daemon, const fd_set *read_fd_set, const
 * Thread Per Connection 
 
 参数：MHD_USE_THREAD_PER_CONNECTION    
-单独create线程accept，accept到的每个连接创建一个线程。
+单独创建线程处理accept连接，对accept到的每个连接创建一个独立的线程处理读写。
 
 * Internal
 
 参数：worker_pool_size == 0 && MHD_USE_SELECT_INTERNALLY
-单独创建线程处理accept ，read ,write
+单独创建线程处理accept连接，以及连接的读写。
 
 * Thread pool
 
 参数：worker_pool_size>0 && MHD_USE_SELECT_INTERNALLY
-创建worker_pool_size （只有在这种情况下大于0 ）个线程，每个线程都会accept，并且管理accept到的连接。
+创建worker_pool_size （只有在这种情况下大于0 ）个线程，每个线程都会accept连接，并且处理连接的读写。
 
 
 
